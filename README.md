@@ -17,4 +17,13 @@ Note for analyzing logs on linux server from siber attack
 #### 3. To see the others tools (in user-agent)
     - awk -F'"' '/GET/ {print $6}' /var/log/apache2/access* | cut -d' ' -f1 | sort | uniq -c | sort -rn
 ##### NB : changes the "-f1" to others field to see different results tools ex:-f2 or -f3
-
+#### 4. To see more details about the tools on user-agent "http status code"
+    - cat access* | grep "gobuster" | cut -d " " -f9 | sort | uniq -c
+##### NB : Pay attention for success or redirect http status code (200 or 300 variant)
+#### 5. Observe http status code for 301 from the used scanning tools
+    - cat access* | grep "gobuster" | awk '{ if($9==301) {print}}'
+##### NB : Now we know what url that the adversary succed scanning, one or some of them maybe vuln
+#### 6. Analyze the activities in all the adversary succeded scanning     
+    - cat access* | grep "akismet" | cut -d " " -f9 | sort | uniq -c
+##### NB : Observer all http status code, foccuss on 200 and 301, is there any malicious?
+    - cat access* | grep "akismet" | awk '{ if($9==301) {print}}' && cat access* | grep "akismet" | awk '{ if($9==200) {print}}'
