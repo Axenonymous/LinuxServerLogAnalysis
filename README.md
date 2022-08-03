@@ -37,7 +37,24 @@ Note for analyzing logs on linux server from siber attack
 #### 1. Identify malicious activities by web user in the system (user www-data)
     - cat auth* | grep -a "www-data"
 ##### NB : -a options is for searching the keywords in binaries file (existing system command executions,ex:sudo,chmod,adduser etc.)
-
+#### 2. Identify Privelege Escalation and Persistance
+    - cat auth* | grep -a "add"
+##### NB : -a options is for searching the keywords in binaries file (existing system command executions,ex:sudo,chmod,adduser etc.)
+#### 3. Identify automated malicious running program
+    - /var/log/$ sudo crontab -l
+##### NB : locate the bash script
+    - htop (to see running background program by malicious bash script)
+    
+### /var/www/html directory analysis practice :
+#### 1. Timestamp sorting for analyzing directory or file modify and changes
+    - ls -alrt
+##### NB : Look for the latest modified directory and file and check what is it
+#### 2. Check for all plugins CVE in (https://www.exploit-db.com/)
+#### 3. Check for backdoors webshell file
+#### 4. Check for another user 
+    - #lastlog
+    - #cat /etc/passwd
+    - #ls /home (user home dir)
 
 
 
