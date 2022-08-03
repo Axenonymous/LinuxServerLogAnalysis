@@ -14,5 +14,7 @@ Note for analyzing logs on linux server from siber attack
 #### 2. To see the the selected IP address logs in the first 100 lines
     -cat access* | grep "192.168.2.145" | head -100
 ##### NB : select for the biggest hits from one IP and observer the user-agent field
-#### 2. To see the the selected IP address logs in the first 100 lines
-    -cat access* | grep "192.168.2.145" | head -100
+#### 3. To see the others tools (in user-agent)
+    - awk -F'"' '/GET/ {print $6}' /var/log/apache2/access* | cut -d' ' -f1 | sort | uniq -c | sort -rn
+##### NB : changes the "-f1" to others field to see different results tools ex:-f2 or -f3
+
