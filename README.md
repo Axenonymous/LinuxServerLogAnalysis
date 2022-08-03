@@ -27,3 +27,24 @@ Note for analyzing logs on linux server from siber attack
     - cat access* | grep "akismet" | cut -d " " -f9 | sort | uniq -c
 ##### NB : Observer all http status code (change the grep "plugins_name" to all that exist), foccuss on 200 and 300 variant, is there any malicious?
     - cat access* | grep "akismet" | awk '{ if($9==301) {print}}' && cat access* | grep "akismet" | awk '{ if($9==200) {print}}'
+#### 7. Analyze is there any tools used (in user-agent field)    
+    - cat access* | grep "themeisle" | cut -d " " -f12 | sort | uniq -c
+#### 8. If there any new tools in user-agent field (-f12), crosscheck betwen plugins and tools    
+    - cat access* | grep "themeisle" | grep -i "gobuster" && cat access* | grep "themeisle" | grep -i "curl"
+##### NB : Sometimes we can found malicious upload file in POST and GET method
+
+### /var/log/auth* logging analysis practice :
+#### 1. Identify malicious activities by web user in the system (user www-data)
+    - cat auth* | grep -a "www-data"
+##### NB : -a options is for searching the keywords in binaries file (existing system command executions,ex:sudo,chmod,adduser etc.)
+
+
+
+
+
+
+
+
+
+
+
