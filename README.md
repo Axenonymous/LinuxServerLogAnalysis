@@ -1,5 +1,5 @@
 # LinuxServerLogAnalysis
-Note for analyzing logs on linux server from siber attack
+Note for analyzing WordPress Webserver logs on linux server from siber attack
 
 ## Linux Command Line in Linux Logging Basics
 ### Command-lines tools that usefull in log analysis :
