@@ -23,7 +23,7 @@ Note for analyzing logs on linux server from siber attack
 #### 5. Observe http status code for 301 from the used scanning tools
     - cat access* | grep "gobuster" | awk '{ if($9==301) {print}}'
 ##### NB : Now we know what url that the adversary succed scanning, one or some of them maybe vuln
-#### 6. Analyze the activities in all the adversary succeded scanning     
+#### 6. Analyze the activities in all the adversary succeded scanning start from http status code    
     - cat access* | grep "akismet" | cut -d " " -f9 | sort | uniq -c
-##### NB : Observer all http status code, foccuss on 200 and 301, is there any malicious?
+##### NB : Observer all http status code (change the grep "plugins_name" to all that exist), foccuss on 200 and 300 variant, is there any malicious?
     - cat access* | grep "akismet" | awk '{ if($9==301) {print}}' && cat access* | grep "akismet" | awk '{ if($9==200) {print}}'
